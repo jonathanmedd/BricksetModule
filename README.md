@@ -12,9 +12,9 @@ An API key from Brickset is required. Currently they are free and you can get on
 **Installation**
 
 
-1) Download all files comprising the module. **Ensure the files are unblocked**.
+1) Download the Brickset folder containing all files comprising the module. **Ensure the files are unblocked**.
 
-2) Copy the module folder to your module folder path, e.g. C:\Users\username\Documents\WindowsPowerShell\Modules\
+2) Copy the Brickset module folder to your module folder path, e.g. C:\Users\username\Documents\WindowsPowerShell\Modules\
 
 
 **Usage**
