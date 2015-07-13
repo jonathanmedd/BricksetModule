@@ -27,18 +27,20 @@ To see a list of available functions:
 
 Get-Command -Module Brickset
 
+- Get-BricksetRecentlyUpdatedSet
+- Get-BricksetSet
+- Get-BricksetSetAdditionalImage
+- Get-BricksetSetDetailed
+- Get-BricksetSetInstructions
+- Get-BricksetSetReview
+- Get-BricksetSubtheme
+- Get-BricksetTheme
+- Get-BricksetYear
+- Set-BricksetAPIKey
+- Test-BricksetAPIKey
+
                          
-Get-BricksetRecentlyUpdatedSet
-Get-BricksetSet
-Get-BricksetSetAdditionalImage
-Get-BricksetSetDetailed
-Get-BricksetSetInstructions
-Get-BricksetSetReview
-Get-BricksetSubtheme
-Get-BricksetTheme
-Get-BricksetYear
-Set-BricksetAPIKey
-Test-BricksetAPIKey
+
 
 
 **Nested Modules**
