@@ -76,7 +76,7 @@ NestedModules = 'Functions\Get-BricksetRecentlyUpdatedSet.psm1',
 				'Functions\Test-BricksetAPIKey.psm1'
 
 # Functions to export from this module
-FunctionsToExport = '*'
+FunctionsToExport = @('Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetReview','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Set-BricksetAPIKey','Test-BricksetAPIKey')
 
 # Cmdlets to export from this module
 CmdletsToExport = '*'
