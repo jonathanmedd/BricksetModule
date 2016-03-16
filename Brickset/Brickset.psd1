@@ -27,10 +27,10 @@ CompanyName = 'Unknown'
 Copyright = '(c) 2015 Jonathan Medd. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Module for working with the Brickset API - http://www.brickset.com'
 
 # Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '4.0'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
