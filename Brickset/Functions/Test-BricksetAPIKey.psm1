@@ -54,7 +54,7 @@ try {
 
     $CheckKey = $Webservice.checkKey($APIKey)
 
-    if ($CheckKey -eq 'OK (v2)'){
+    if ($CheckKey -eq 'OK'){
 
         Write-Output $true
     }
