@@ -63,17 +63,17 @@ PowerShellVersion = '4.0'
 # FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = 'Functions\Get-BricksetRecentlyUpdatedSet.psm1',
-				'Functions\Get-BricksetSet.psm1',
-				'Functions\Get-BricksetSetAdditionalImage.psm1',
-				'Functions\Get-BricksetSetDetailed.psm1',
-				'Functions\Get-BricksetSetInstructions.psm1',
-				'Functions\Get-BricksetSetReview.psm1',
-				'Functions\Get-BricksetSubtheme.psm1',
-				'Functions\Get-BricksetTheme.psm1',
-				'Functions\Get-BricksetYear.psm1',
-				'Functions\Set-BricksetAPIKey.psm1',
-				'Functions\Test-BricksetAPIKey.psm1'
+NestedModules = 'Functions\Public\Get-BricksetRecentlyUpdatedSet.psm1',
+				'Functions\Public\Get-BricksetSet.psm1',
+				'Functions\Public\Get-BricksetSetAdditionalImage.psm1',
+				'Functions\Public\Get-BricksetSetDetailed.psm1',
+				'Functions\Public\Get-BricksetSetInstructions.psm1',
+				'Functions\Public\Get-BricksetSetReview.psm1',
+				'Functions\Public\Get-BricksetSubtheme.psm1',
+				'Functions\Public\Get-BricksetTheme.psm1',
+				'Functions\Public\Get-BricksetYear.psm1',
+				'Functions\Public\Set-BricksetAPIKey.psm1',
+				'Functions\Public\Test-BricksetAPIKey.psm1'
 
 # Functions to export from this module
 FunctionsToExport = @('Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetReview','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Set-BricksetAPIKey','Test-BricksetAPIKey')
