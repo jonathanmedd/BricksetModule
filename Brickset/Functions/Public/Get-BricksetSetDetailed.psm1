@@ -5,9 +5,6 @@
     
     .DESCRIPTION
     Get Brickset Set with detailed info
-    
-    .PARAMETER APIKey
-    API Key
 
     .PARAMETER SetId
     Brickset SetId (not the Lego Set Number)
@@ -19,7 +16,7 @@
     Brickset.sets
 
     .EXAMPLE
-    Get-BricksetSetDetailed -APIKey 'Tk5C-KTA2-Gw2Q' -SetId 6905
+    Get-BricksetSetDetailed -SetId 6905
 
     .EXAMPLE
     Get-BricksetSet -Theme 'Indiana Jones' | Get-BricksetSetDetailed
@@ -29,47 +26,25 @@
     Param
     (
 
-    [parameter(Mandatory=$false)]
-    [ValidateNotNullOrEmpty()]
-    [String]$APIKey,
-
     [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
     [ValidateNotNullOrEmpty()]
     [String]$SetId
     )
 
-begin {
+    begin {
 
-    # --- If $APIKey not supplied, try $Global:BricksetAPIKey
-
-    if (!($PSBoundParameters.ContainsKey('APIKey'))){
-            
-        try {
-    
-            Get-Variable BricksetAPIKey | Out-Null
-            $APIKey = $BricksetAPIKey
-        }
-        catch [Exception] {
-
-            throw 'Brickset API Key not specified nor exists in $Global:BricksetAPIKey. Please set this to continue'
-        }
+        # --- Check for the presence of $Global:BricksetConnection
+        xCheckGlobalBricksetConnection
     }
-
-    # --- Make the Webservice Call
-    if (!($Webservice)){
-
-        $Global:Webservice = New-WebServiceProxy -Uri 'http://brickset.com/api/v2.asmx?WSDL' -Namespace 'Brickset' -Class 'Sets'
-    }
-}
-process {
-    
-    try {
-    
-        $Webservice.getSet($APIKey,$null,$SetId)
-    }
-    catch [Exception]{
+    process {
         
-        throw "Unable to get Brickset Set"
+        try {
+        
+            $BricksetConnection.WebService.getSet($BricksetConnection.APIKey,$null,$SetId)
+        }
+        catch [Exception]{
+            
+            throw 
+        }
     }
-}
 }
