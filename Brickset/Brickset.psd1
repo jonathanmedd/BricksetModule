@@ -12,7 +12,7 @@
 # RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '1.1'
+ModuleVersion = '1.2'
 
 # ID used to uniquely identify this module
 GUID = '79ec18d2-adb1-4599-901b-2cad30680526'
@@ -54,7 +54,7 @@ PowerShellVersion = '4.0'
 # RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-# ScriptsToProcess = @()
+ScriptsToProcess = 'Functions\Private\xCheckGlobalBricksetConnection.ps1'
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
@@ -63,20 +63,20 @@ PowerShellVersion = '4.0'
 # FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = 'Functions\Get-BricksetRecentlyUpdatedSet.psm1',
-				'Functions\Get-BricksetSet.psm1',
-				'Functions\Get-BricksetSetAdditionalImage.psm1',
-				'Functions\Get-BricksetSetDetailed.psm1',
-				'Functions\Get-BricksetSetInstructions.psm1',
-				'Functions\Get-BricksetSetReview.psm1',
-				'Functions\Get-BricksetSubtheme.psm1',
-				'Functions\Get-BricksetTheme.psm1',
-				'Functions\Get-BricksetYear.psm1',
-				'Functions\Set-BricksetAPIKey.psm1',
-				'Functions\Test-BricksetAPIKey.psm1'
+NestedModules = 'Functions\Public\Connect-Brickset.psm1',
+                'Functions\Public\Get-BricksetRecentlyUpdatedSet.psm1',
+				'Functions\Public\Get-BricksetSet.psm1',
+				'Functions\Public\Get-BricksetSetAdditionalImage.psm1',
+				'Functions\Public\Get-BricksetSetDetailed.psm1',
+				'Functions\Public\Get-BricksetSetInstructions.psm1',
+				'Functions\Public\Get-BricksetSetReview.psm1',
+				'Functions\Public\Get-BricksetSubtheme.psm1',
+				'Functions\Public\Get-BricksetTheme.psm1',
+				'Functions\Public\Get-BricksetYear.psm1',
+				'Functions\Public\Test-BricksetAPIKey.psm1'
 
 # Functions to export from this module
-FunctionsToExport = @('Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetReview','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Set-BricksetAPIKey','Test-BricksetAPIKey')
+FunctionsToExport = @('Connect-Brickset','Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetReview','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Test-BricksetAPIKey')
 
 # Cmdlets to export from this module
 CmdletsToExport = '*'
