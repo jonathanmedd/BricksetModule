@@ -55,7 +55,7 @@
 
             $Username = $Credential.UserName
             $Password = $Credential.GetNetworkCredential().Password
-            $UserHash = $Global:BricksetConnection.WebService.login($Global:BricksetConnection.BricksetAPIKey, $Username, $Password)
+            $UserHash = $Global:BricksetConnection.WebService.login($Global:BricksetConnection.APIKey, $Username, $Password)
             $Global:BricksetConnection.UserHash = $UserHash
         }
     }
