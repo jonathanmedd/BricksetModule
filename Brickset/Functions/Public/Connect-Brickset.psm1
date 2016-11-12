@@ -50,16 +50,14 @@
             WebService = New-WebServiceProxy -Uri 'http://brickset.com/api/v2.asmx?WSDL' -Namespace 'Brickset' -Class 'Sets'
         }
 
-        # --- Get the UserHash
+        # --- Update BricksetConnection with UserHash
         if ($PSBoundParameters.ContainsKey("Credential")){
 
             $Username = $Credential.UserName
             $Password = $Credential.GetNetworkCredential().Password
             $UserHash = $Global:BricksetConnection.WebService.login($Global:BricksetConnection.BricksetAPIKey, $Username, $Password)
+            $Global:BricksetConnection.UserHash = $UserHash
         }
-
-        # --- Update BricksetConnection with UserHash
-        $Global:BricksetConnection.UserHash = $UserHash
     }
     catch [Exception]{
             
