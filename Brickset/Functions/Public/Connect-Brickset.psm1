@@ -45,7 +45,7 @@
         # --- Create Output Object                
         $Global:BricksetConnection = [pscustomobject]@{                        
                         
-            BricksetAPIKey = $APIKey
+            APIKey = $APIKey
             UserHash = $null
             WebService = New-WebServiceProxy -Uri 'http://brickset.com/api/v2.asmx?WSDL' -Namespace 'Brickset' -Class 'Sets'
         }
