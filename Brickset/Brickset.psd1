@@ -54,7 +54,7 @@ PowerShellVersion = '4.0'
 # RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-ScriptsToProcess = 'Functions\Private\xCheckGlobalBricksetConnection.ps1'
+ScriptsToProcess = 'Functions\Private\xCheckUserHash','Functions\Private\xCheckGlobalBricksetConnection.ps1'
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
@@ -64,6 +64,7 @@ ScriptsToProcess = 'Functions\Private\xCheckGlobalBricksetConnection.ps1'
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 NestedModules = 'Functions\Public\Connect-Brickset.psm1',
+                'Functions\Public\Get-BricksetCollectionTotals.psm1',
                 'Functions\Public\Get-BricksetRecentlyUpdatedSet.psm1',
 				'Functions\Public\Get-BricksetSet.psm1',
 				'Functions\Public\Get-BricksetSetAdditionalImage.psm1',
@@ -76,7 +77,7 @@ NestedModules = 'Functions\Public\Connect-Brickset.psm1',
 				'Functions\Public\Test-BricksetAPIKey.psm1'
 
 # Functions to export from this module
-FunctionsToExport = @('Connect-Brickset','Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetReview','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Test-BricksetAPIKey')
+FunctionsToExport = @('Connect-Brickset','Get-BricksetCollectionTotals','Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetReview','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Test-BricksetAPIKey')
 
 # Cmdlets to export from this module
 CmdletsToExport = '*'
