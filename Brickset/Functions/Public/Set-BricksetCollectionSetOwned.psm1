@@ -21,12 +21,15 @@
 
     .EXAMPLE
     Set-BricksetCollectionSetOwned -SetId 26049 -QtyOwned 1
+
+    .EXAMPLE
+    Get-BricksetSet -SetNumber '7199-1' | Set-BricksetCollectionSetOwned -QtyOwned 1 -Confirm:$false
 #>
 [CmdletBinding(SupportsShouldProcess,ConfirmImpact="High")]
 
     Param
     (
-    [parameter(Mandatory=$true,ValueFromPipeline=$true,ValueFromPipelineByPropertyName=$true)]
+    [parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
     [ValidateNotNullOrEmpty()]
     [String]$SetId,
 
