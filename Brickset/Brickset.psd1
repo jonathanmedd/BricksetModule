@@ -78,11 +78,12 @@ NestedModules = 'Functions\Public\Connect-Brickset.psm1',
 				'Functions\Public\Get-BricksetYear.psm1',
 				'Functions\Public\Set-BricksetCollectionSetOwned.psm1',
 				'Functions\Public\Set-BricksetCollectionSetUnwanted.psm1',
+				'Functions\Public\Set-BricksetCollectionSetUserNotes.psm1',
 				'Functions\Public\Set-BricksetCollectionSetWanted.psm1',
 				'Functions\Public\Test-BricksetAPIKey.psm1'
 
 # Functions to export from this module
-FunctionsToExport = @('Connect-Brickset','Get-BricksetCollectionTotals','Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetOwned','Get-BricksetSetReview','Get-BricksetSetWanted','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Set-BricksetCollectionSetOwned','Set-BricksetCollectionSetUnwanted','Set-BricksetCollectionSetWanted','Test-BricksetAPIKey')
+FunctionsToExport = @('Connect-Brickset','Get-BricksetCollectionTotals','Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetOwned','Get-BricksetSetReview','Get-BricksetSetWanted','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Set-BricksetCollectionSetOwned','Set-BricksetCollectionSetUnwanted','Set-BricksetCollectionSetUserNotes','Set-BricksetCollectionSetWanted','Test-BricksetAPIKey')
 
 # Cmdlets to export from this module
 CmdletsToExport = '*'
