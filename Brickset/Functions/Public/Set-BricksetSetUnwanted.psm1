@@ -1,10 +1,10 @@
-﻿function Set-BricksetCollectionSetWanted {
+﻿function Set-BricksetSetUnwanted {
 <#
     .SYNOPSIS
-    Set a Brickset Set to Wanted status
+    Set a Brickset Set to Unwanted status
     
     .DESCRIPTION
-    Set a Brickset Set to Wanted status
+    Set a Brickset Set to Unwanted status
 
     .PARAMETER SetId
     Brickset SetId
@@ -16,7 +16,7 @@
     None
 
     .EXAMPLE
-    Set-BricksetCollectionSetWanted -SetId 26049
+    Set-BricksetSetUnwanted -SetId 26049
 #>
 [CmdletBinding(SupportsShouldProcess,ConfirmImpact="High")]
 
@@ -39,7 +39,7 @@
         # --- Make the Webservice Call
         if ($PSCmdlet.ShouldProcess($SetId)){
 
-            $BricksetConnection.WebService.setCollection_wants($BricksetConnection.APIKey, $BricksetConnection.UserHash, $SetId, 1)
+            $BricksetConnection.WebService.setCollection_wants($BricksetConnection.APIKey, $BricksetConnection.UserHash, $SetId, 0)
         }
     }
     catch [Exception]{

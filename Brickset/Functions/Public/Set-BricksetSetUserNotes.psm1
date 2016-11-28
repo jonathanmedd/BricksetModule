@@ -1,4 +1,4 @@
-﻿function Set-BricksetCollectionSetUserNotes {
+﻿function Set-BricksetSetUserNotes {
 <#
     .SYNOPSIS
     Set the User Notes for a Brickset Set.
@@ -19,10 +19,10 @@
     None
 
     .EXAMPLE
-    Set-BricksetCollectionSetUserNotes  -SetId 26049 -UserNotes "This is one of my favourites"
+    Set-BricksetSetUserNotes  -SetId 26049 -UserNotes "This is one of my favourites"
 
     .EXAMPLE
-    Get-BricksetSet -SetNumber '7199-1' | Set-BricksetCollectionSetUserNotes -Notes "This is one of my favourites" -Confirm:$false
+    Get-BricksetSet -SetNumber '7199-1' | Set-BricksetSetUserNotes -Notes "This is one of my favourites" -Confirm:$false
 #>
 [CmdletBinding(SupportsShouldProcess,ConfirmImpact="High")]
 

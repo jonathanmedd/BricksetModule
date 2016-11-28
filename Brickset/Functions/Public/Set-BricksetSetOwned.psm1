@@ -1,4 +1,4 @@
-﻿function Set-BricksetCollectionSetOwned {
+﻿function Set-BricksetSetOwned {
 <#
     .SYNOPSIS
     Set a Brickset Set to Owned status
@@ -20,10 +20,10 @@
     None
 
     .EXAMPLE
-    Set-BricksetCollectionSetOwned -SetId 26049 -QtyOwned 1
+    Set-BricksetSetOwned -SetId 26049 -QtyOwned 1
 
     .EXAMPLE
-    Get-BricksetSet -SetNumber '7199-1' | Set-BricksetCollectionSetOwned -QtyOwned 1 -Confirm:$false
+    Get-BricksetSet -SetNumber '7199-1' | Set-BricksetSetOwned -QtyOwned 1 -Confirm:$false
 #>
 [CmdletBinding(SupportsShouldProcess,ConfirmImpact="High")]
 
