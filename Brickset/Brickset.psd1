@@ -66,6 +66,8 @@ ScriptsToProcess = 'Functions\Private\xCheckUserHash','Functions\Private\xCheckG
 NestedModules = 'Functions\Public\Connect-Brickset.psm1',
                 'Functions\Public\Get-BricksetCollectionTotals.psm1',
                 'Functions\Public\Get-BricksetCollectionUserNotes.psm1',
+                'Functions\Public\Get-BricksetMinifigCollectionOwned.psm1',
+                'Functions\Public\Get-BricksetMinifigCollectionWanted.psm1',
                 'Functions\Public\Get-BricksetRecentlyUpdatedSet.psm1',
 				'Functions\Public\Get-BricksetSet.psm1',
 				'Functions\Public\Get-BricksetSetAdditionalImage.psm1',
@@ -84,7 +86,7 @@ NestedModules = 'Functions\Public\Connect-Brickset.psm1',
 				'Functions\Public\Test-BricksetAPIKey.psm1'
 
 # Functions to export from this module
-FunctionsToExport = @('Connect-Brickset','Get-BricksetCollectionTotals','Get-BricksetCollectionUserNotes','Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetOwned','Get-BricksetSetReview','Get-BricksetSetWanted','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Set-BricksetSetOwned','Set-BricksetSetUnwanted','Set-BricksetSetUserNotes','Set-BricksetSetWanted','Test-BricksetAPIKey')
+FunctionsToExport = @('Connect-Brickset','Get-BricksetCollectionTotals','Get-BricksetCollectionUserNotes','Get-BricksetMinifigCollectionOwned','Get-BricksetMinifigCollectionWanted','Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetOwned','Get-BricksetSetReview','Get-BricksetSetWanted','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Set-BricksetSetOwned','Set-BricksetSetUnwanted','Set-BricksetSetUserNotes','Set-BricksetSetWanted','Test-BricksetAPIKey')
 
 # Cmdlets to export from this module
 CmdletsToExport = '*'
