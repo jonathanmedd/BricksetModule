@@ -22,7 +22,7 @@ PowerShell v4 users: Try this handy one liner to download and install the module
 
 ```
 (new-object Net.WebClient).DownloadString("https://github.com/jonathanmedd/BricksetModule/blob/master/Get-Brickset.ps1") | iex
-
+```
 
 **Usage**
 
