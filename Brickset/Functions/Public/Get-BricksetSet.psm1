@@ -21,6 +21,9 @@
     .PARAMETER OrderBy
     Specify Sort Order
 
+    .PARAMETER PageSize
+    Specify how many records to return
+
     .INPUTS
     System.String.
     System.Int

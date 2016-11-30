@@ -12,10 +12,17 @@ An API key from Brickset is required. Currently they are free and you can get on
 **Installation**
 
 
-1) Download the Brickset folder containing all files comprising the module. **Ensure the files are unblocked**.
+PowerShell v5 users: You grab the latest version of the module from the PowerShell Gallery by running the following command:
 
-2) Copy the Brickset module folder to your module folder path, e.g. C:\Users\username\Documents\WindowsPowerShell\Modules\
+```
+Install-Module -Name Brickset
+```
 
+PowerShell v4 users: Try this handy one liner to download and install the module:
+
+```
+(new-object Net.WebClient).DownloadString("https://github.com/jonathanmedd/BricksetModule/blob/master/Get-Brickset.ps1") | iex
+```
 
 **Usage**
 
@@ -27,24 +34,26 @@ To see a list of available functions:
 
 Get-Command -Module Brickset
 
-- Get-BricksetRecentlyUpdatedSet
-- Get-BricksetSet
-- Get-BricksetSetAdditionalImage
-- Get-BricksetSetDetailed
-- Get-BricksetSetInstructions
-- Get-BricksetSetReview
-- Get-BricksetSubtheme
-- Get-BricksetTheme
-- Get-BricksetYear
-- Set-BricksetAPIKey
-- Test-BricksetAPIKey
-
-                         
-
-
-
-**Nested Modules**
-
-You will note that each function is itself a nested module of the PowerCLITools module. In this [blog post](www.jonathanmedd.net/2013/11/powercli-in-the-enterprise-breaking-the-magicians-code-function-templates.html) I describe why I make my modules like this.
-
-
+Connect-Brickset
+Get-BricksetCollectionTotals
+Get-BricksetCollectionUserNotes
+Get-BricksetMinifigCollectionOwned
+Get-BricksetMinifigCollectionWanted
+Get-BricksetRecentlyUpdatedSet
+Get-BricksetSet
+Get-BricksetSetAdditionalImage
+Get-BricksetSetDetailed
+Get-BricksetSetInstructions
+Get-BricksetSetOwned
+Get-BricksetSetReview
+Get-BricksetSetWanted
+Get-BricksetSubtheme
+Get-BricksetTheme
+Get-BricksetYear
+Set-BricksetMinifgCollectionOwned
+Set-BricksetMinifgCollectionWanted
+Set-BricksetSetOwned
+Set-BricksetSetUnwanted
+Set-BricksetSetUserNotes
+Set-BricksetSetWanted
+Test-BricksetAPIKey
