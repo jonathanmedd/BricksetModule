@@ -33,27 +33,3 @@ Import-Module Brickset
 To see a list of available functions:
 
 Get-Command -Module Brickset
-
-Connect-Brickset
-Get-BricksetCollectionTotals
-Get-BricksetCollectionUserNotes
-Get-BricksetMinifigCollectionOwned
-Get-BricksetMinifigCollectionWanted
-Get-BricksetRecentlyUpdatedSet
-Get-BricksetSet
-Get-BricksetSetAdditionalImage
-Get-BricksetSetDetailed
-Get-BricksetSetInstructions
-Get-BricksetSetOwned
-Get-BricksetSetReview
-Get-BricksetSetWanted
-Get-BricksetSubtheme
-Get-BricksetTheme
-Get-BricksetYear
-Set-BricksetMinifgCollectionOwned
-Set-BricksetMinifgCollectionWanted
-Set-BricksetSetOwned
-Set-BricksetSetUnwanted
-Set-BricksetSetUserNotes
-Set-BricksetSetWanted
-Test-BricksetAPIKey
