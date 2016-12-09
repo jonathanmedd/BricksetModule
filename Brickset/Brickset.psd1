@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-# RootModule = ''
+RootModule = 'Brickset.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.3.0'
@@ -54,7 +54,7 @@ PowerShellVersion = '4.0'
 # RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-ScriptsToProcess = 'Functions\Private\xCheckUserHash','Functions\Private\xCheckGlobalBricksetConnection.ps1'
+# ScriptsToProcess = @()
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
@@ -63,32 +63,10 @@ ScriptsToProcess = 'Functions\Private\xCheckUserHash','Functions\Private\xCheckG
 # FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = 'Functions\Public\Connect-Brickset.psm1',
-                'Functions\Public\Get-BricksetCollectionTotals.psm1',
-                'Functions\Public\Get-BricksetCollectionUserNotes.psm1',
-                'Functions\Public\Get-BricksetMinifigCollectionOwned.psm1',
-                'Functions\Public\Get-BricksetMinifigCollectionWanted.psm1',
-                'Functions\Public\Get-BricksetRecentlyUpdatedSet.psm1',
-				'Functions\Public\Get-BricksetSet.psm1',
-				'Functions\Public\Get-BricksetSetAdditionalImage.psm1',
-				'Functions\Public\Get-BricksetSetDetailed.psm1',
-				'Functions\Public\Get-BricksetSetInstructions.psm1',
-				'Functions\Public\Get-BricksetSetOwned.psm1',
-				'Functions\Public\Get-BricksetSetReview.psm1',
-				'Functions\Public\Get-BricksetSetWanted.psm1',
-				'Functions\Public\Get-BricksetSubtheme.psm1',
-				'Functions\Public\Get-BricksetTheme.psm1',
-				'Functions\Public\Get-BricksetYear.psm1',
-				'Functions\Public\Set-BricksetMinifgCollectionOwned.psm1',
-				'Functions\Public\Set-BricksetMinifgCollectionWanted.psm1',
-				'Functions\Public\Set-BricksetSetOwned.psm1',
-				'Functions\Public\Set-BricksetSetUnwanted.psm1',
-				'Functions\Public\Set-BricksetSetUserNotes.psm1',
-				'Functions\Public\Set-BricksetSetWanted.psm1',
-				'Functions\Public\Test-BricksetAPIKey.psm1'
+# NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @('Connect-Brickset','Get-BricksetCollectionTotals','Get-BricksetCollectionUserNotes','Get-BricksetMinifigCollectionOwned','Get-BricksetMinifigCollectionWanted','Get-BricksetRecentlyUpdatedSet','Get-BricksetSet','Get-BricksetSetAdditionalImage','Get-BricksetSetDetailed','Get-BricksetSetInstructions','Get-BricksetSetOwned','Get-BricksetSetReview','Get-BricksetSetWanted','Get-BricksetSubtheme','Get-BricksetTheme','Get-BricksetYear','Set-BricksetMinifgCollectionOwned','Set-BricksetMinifgCollectionWanted','Set-BricksetSetOwned','Set-BricksetSetUnwanted','Set-BricksetSetUserNotes','Set-BricksetSetWanted','Test-BricksetAPIKey')
+# FunctionsToExport = @()
 
 # Cmdlets to export from this module
 CmdletsToExport = '*'
