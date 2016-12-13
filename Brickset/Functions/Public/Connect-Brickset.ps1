@@ -2,10 +2,10 @@
 <#
     .SYNOPSIS
     Make a connection to the Brickset API
-    
+
     .DESCRIPTION
     Make a connection to the Brickset API. Set the Brickset API Key and UserHash
-    
+
     .PARAMETER APIKey
     API Key
 
@@ -38,13 +38,13 @@
     [Parameter(Mandatory=$false)]
 	[ValidateNotNullOrEmpty()]
 	[Management.Automation.PSCredential]$Credential
-    )    
+    )
 
     try {
 
-        # --- Create Output Object                
-        $Global:BricksetConnection = [pscustomobject]@{                        
-                        
+        # --- Create Output Object
+        $Global:BricksetConnection = [pscustomobject]@{
+
             APIKey = $APIKey
             UserHash = $null
             WebService = New-WebServiceProxy -Uri 'http://brickset.com/api/v2.asmx?WSDL' -Namespace 'Brickset' -Class 'Sets'
@@ -60,11 +60,11 @@
         }
     }
     catch [Exception]{
-            
+
         throw
     }
     finally {
 
-        Write-Output $BricksetConnection 
+        Write-Output $BricksetConnection
     }
 }
