@@ -65,6 +65,6 @@
     }
     finally {
 
-        Write-Output $Global:BricksetConnection
+        Write-Output $BricksetConnection
     }
 }
