@@ -1,4 +1,4 @@
-function Global:xCheckGlobalBricksetConnection {
+function xCheckGlobalBricksetConnection {
 <#
     .SYNOPSIS
     Checks for the presence of $Global:BricksetConnection
