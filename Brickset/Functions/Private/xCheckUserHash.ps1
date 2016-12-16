@@ -1,4 +1,4 @@
-function Global:xCheckUserHash{
+function xCheckUserHash{
 <#
     .SYNOPSIS
     Checks for the presence of $Global:BricksetConnection.UserHash
