@@ -1,4 +1,34 @@
-﻿# --- Build out Brickset Connection for tests
+﻿# --- Startup
+Import-Module -Name "$PSScriptRoot\..\Brickset" -Force
+
+
+# --- Connection Tests
+Describe -Name 'Testing Brickset Connections' -Fixture {
+
+    It -name 'Testing Connect-Brickset' -test {
+
+        Mock -CommandName New-WebServiceProxy -MockWith {
+
+            return $Global:BricksetConnection.Webservice = 'test'
+
+        } -ParameterFilter {
+           $uri -match 'http://brickset.com/api/v2.asmx?WSDL'
+        }
+
+        Connect-Brickset -APIKey 'xxxx-xxxx-xxxx'
+        $Global:BricksetConnection.APIKey | Should Be 'xxxx-xxxx-xxxx'
+    }
+
+
+    It -name 'Testing Disconnect-Brickset' -test {
+
+        Disconnect-Brickset -Confirm:$false
+        $Global:BricksetConnection | Should Be $null
+    }
+}
+
+
+# --- Build out Brickset Connection for tests
 $Global:BricksetConnection = @{ }
 $Global:BricksetConnection.UserHash = 'sdfjhg23'
 $Global:BricksetConnection.WebService = [PSCustomObject]@{} | Add-Member -Passthru ScriptMethod getCollectionTotals {
@@ -139,8 +169,7 @@ $Global:BricksetConnection.WebService | Add-Member -Passthru ScriptMethod setCol
 }
 
 
-
-# --- Get Tests
+# --- Get-* Tests
 Describe 'Testing Get Functions' {
 
     It 'Testing Get-BricksetCollectionTotals' {
@@ -220,7 +249,7 @@ Describe 'Testing Get Functions' {
     }
 }
 
-# --- Set Tests
+# --- Set-* Tests
 Describe 'Testing Set Functions' {
 
     It 'Testing Set-BricksetMinifgCollectionOwned' {
