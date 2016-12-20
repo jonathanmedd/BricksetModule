@@ -10,7 +10,9 @@ init:
 install:
   - ps: Install-Module -Name Pester -Force
 test_script:
- # Test
+# Test
   - ps: . .\Tests\appveyor.pester.ps1 -Test
 # Finalize pass - collect and upload results
   - ps: . .\Tests\appveyor.pester.ps1 -Finalize
+after_build:
+  - ps: Get-ChildItem .\*.xml | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
