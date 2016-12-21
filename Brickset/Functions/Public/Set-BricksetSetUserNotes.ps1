@@ -2,7 +2,7 @@
 <#
     .SYNOPSIS
     Set the User Notes for a Brickset Set.
-    
+
     .DESCRIPTION
     Set the User Notes for a Brickset Set.
 
@@ -19,7 +19,7 @@
     None
 
     .EXAMPLE
-    Set-BricksetSetUserNotes  -SetId 26049 -UserNotes "This is one of my favourites"
+    Set-BricksetSetUserNotes  -SetId 26049 -Notes "This is one of my favourites"
 
     .EXAMPLE
     Get-BricksetSet -SetNumber '7199-1' | Set-BricksetSetUserNotes -Notes "This is one of my favourites" -Confirm:$false
@@ -37,7 +37,7 @@
     [String]$Notes
 
     )
-    
+
     try {
 
         # --- Check for the presence of $Global:BricksetConnection
@@ -53,7 +53,7 @@
         }
     }
     catch [Exception]{
-            
+
         throw
     }
 }
