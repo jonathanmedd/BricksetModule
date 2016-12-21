@@ -14,5 +14,3 @@ test_script:
   - ps: . .\Tests\appveyor.pester.ps1 -Test
 # Finalize pass - collect and upload results
   - ps: . .\Tests\appveyor.pester.ps1 -Finalize
-after_build:
-  - ps: Get-ChildItem .\*.xml | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
