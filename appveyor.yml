@@ -4,7 +4,7 @@ branches:
   - master
   - development
 image: WMF 5
-#build: off
+build: off
 init:
   - ps: Install-PackageProvider NuGet -Force | Out-Null
 install:
