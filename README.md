@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/acnq20f29t11miyh?svg=true)](https://ci.appveyor.com/project/jonathanmedd/bricksetmodule)
+[![Build status](https://ci.appveyor.com/api/projects/status/q72a9vcced6m8fd1?svg=true)](https://ci.appveyor.com/project/jonathanmedd/bricksetmodule)
 # PowerShell Brickset Module
 
 The [www.brickset.com](http://www.brickset.com) website provides an [API](http://brickset.com/tools/webservices/v2) for working with their data. This PowerShell module works with that [API](http://brickset.com/tools/webservices/v2).
