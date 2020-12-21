@@ -2,10 +2,10 @@
 <#
     .SYNOPSIS
     Get Brickset Themes
-    
+
     .DESCRIPTION
     Get Brickset Themes
-    
+
     .INPUTS
     None
 
@@ -17,10 +17,7 @@
 #>
 [CmdletBinding()][OutputType('Brickset.themes')]
 
-    Param
-    (
-
-    )    
+    param()
 
     try {
 
@@ -28,10 +25,14 @@
         xCheckGlobalBricksetConnection
 
         # --- Make the Webservice Call
-        $BricksetConnection.WebService.getThemes($BricksetConnection.APIKey)
+        $body = @{
+            apiKey = $Script:BricksetConnection.apiKey
+        }
+
+        Invoke-BricksetRestMethod -Method POST -URI '/getThemes' -Body $body
     }
     catch [Exception]{
-            
+
         throw
     }
 }

@@ -1,10 +1,10 @@
 function xCheckGlobalBricksetConnection {
 <#
     .SYNOPSIS
-    Checks for the presence of $Global:BricksetConnection
+    Checks for the presence of $Script:BricksetConnection
 
     .DESCRIPTION
-    Checks for the presence of $Global:BricksetConnection
+    Checks for the presence of $Script:BricksetConnection
 
     .INPUTS
     None
@@ -22,13 +22,8 @@ function xCheckGlobalBricksetConnection {
 
     )
     # --- Test for Brickset Connection
-    if (-not $Global:BricksetConnection){
+    if (-not $Script:BricksetConnection){
 
         throw "Brickset Connection variable does not exist. Please run Connect-Brickset first to create it"
-    }
-
-    elseif (-not $Global:BricksetConnection.WebService) {
-
-        throw "Brickset Connection variable not populated with a WebService. Please run Connect-Brickset first to populate it"
     }
 }
