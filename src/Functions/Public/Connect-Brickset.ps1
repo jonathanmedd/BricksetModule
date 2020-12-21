@@ -47,7 +47,7 @@
 
             apiKey = $apiKey
             userHash = $null
-            url = 'https://brickset.com/api/v3.asmx/'
+            url = 'https://brickset.com/api/v3.asmx'
         }
 
         # --- Update BricksetConnection with UserHash
