@@ -33,33 +33,40 @@
 
     [parameter(Mandatory=$true)]
     [ValidateNotNullOrEmpty()]
-    [String]$APIKey,
+    [String]$apiKey,
 
     [Parameter(Mandatory=$false)]
 	[ValidateNotNullOrEmpty()]
-	[Management.Automation.PSCredential]$Credential
+	[Management.Automation.PSCredential]$credential
     )
 
     try {
 
         # --- Create Output Object
-        $Global:BricksetConnection = [pscustomobject]@{
+        $Script:bricksetConnection = [pscustomobject]@{
 
-            APIKey = $APIKey
-            UserHash = $null
-            WebService = New-WebServiceProxy -Uri 'https://brickset.com/api/v2.asmx?WSDL' -Namespace 'Brickset' -Class 'Sets'
+            apiKey = $apiKey
+            userHash = $null
+            url = 'https://brickset.com/api/v3.asmx/'
         }
-        
-        # --- Update BricksetConnection with https URL
-        $Global:BricksetConnection.WebService.Url = 'https://brickset.com/api/v2.asmx'
 
         # --- Update BricksetConnection with UserHash
-        if ($PSBoundParameters.ContainsKey("Credential")){
+        if ($PSBoundParameters.ContainsKey("credential")){
 
-            $Username = $Credential.UserName
-            $Password = $Credential.GetNetworkCredential().Password
-            $UserHash = $Global:BricksetConnection.WebService.login($Global:BricksetConnection.APIKey, $Username, $Password)
-            $Global:BricksetConnection.UserHash = $UserHash
+            $username = $credential.UserName
+            $password = $credential.GetNetworkCredential().Password
+
+            $contentType = 'application/x-www-form-urlencoded'
+
+            $body = @{
+                apiKey = $Script:bricksetConnection.apiKey
+                username = $username
+                password = $password
+            }
+
+            $response = Invoke-RestMethod -Method POST -Uri 'https://brickset.com/api/v3.asmx/login' -ContentType $contentType -body $body
+
+            $Script:bricksetConnection.userHash = $response.hash
         }
 
     }
@@ -69,6 +76,6 @@
     }
     finally {
 
-        Write-Output $BricksetConnection
+        Write-Output $bricksetConnection
     }
 }
