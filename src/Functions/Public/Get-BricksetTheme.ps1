@@ -29,7 +29,9 @@
             apiKey = $Script:BricksetConnection.apiKey
         }
 
-        Invoke-BricksetRestMethod -Method POST -URI '/getThemes' -Body $body
+        $response = Invoke-BricksetRestMethod -Method POST -URI '/getThemes' -Body $body
+
+        $response.themes
     }
     catch [Exception]{
 
