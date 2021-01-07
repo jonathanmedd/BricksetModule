@@ -24,7 +24,7 @@
         # --- Check for the presence of $Global:BricksetConnection
         xCheckGlobalBricksetConnection
 
-        # --- Make the Webservice Call
+        # --- Make the REST Call
         $body = @{
             apiKey = $Script:BricksetConnection.apiKey
         }
