@@ -15,7 +15,7 @@
     .EXAMPLE
     Get-BricksetTheme
 #>
-[CmdletBinding()][OutputType('Brickset.themes')]
+[CmdletBinding()][OutputType('System.Management.Automation.PSObject')]
 
     param()
 
