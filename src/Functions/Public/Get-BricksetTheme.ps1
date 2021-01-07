@@ -1,5 +1,5 @@
 ﻿function Get-BricksetTheme {
-<#
+    <#
     .SYNOPSIS
     Get Brickset Themes
 
@@ -15,7 +15,7 @@
     .EXAMPLE
     Get-BricksetTheme
 #>
-[CmdletBinding()][OutputType('System.Management.Automation.PSObject')]
+    [CmdletBinding()][OutputType('System.Management.Automation.PSObject')]
 
     param()
 
@@ -33,7 +33,7 @@
 
         $response.themes
     }
-    catch [Exception]{
+    catch [Exception] {
 
         throw
     }
