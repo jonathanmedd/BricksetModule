@@ -79,7 +79,10 @@
         xCheckGlobalBricksetConnection
 
         # - Prepare the JSON params
-        $jsonParams = [PSCustomObject] @{}
+        $jsonParams = [PSCustomObject] @{
+
+            pageSize = $pageSize
+        }
 
         if ($PSBoundParameters.ContainsKey('theme')) {
 
