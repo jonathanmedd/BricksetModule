@@ -1,19 +1,19 @@
 ﻿function Get-BricksetSetAdditionalImage {
-<#
+    <#
     .SYNOPSIS
     Get Brickset Set Additional Images
-    
+
     .DESCRIPTION
     Get Brickset Set Additional Images
 
-    .PARAMETER SetId
+    .PARAMETER setId
     Brickset SetId (not the Lego Set Number)
 
     .INPUTS
     System.String.
 
     .OUTPUTS
-    Brickset.additionalImages
+    System.Management.Automation.PSObject
 
     .EXAMPLE
     Get-BricksetSetAdditionalImage -SetId 6905
@@ -22,31 +22,41 @@
     Get-BricksetSet -Theme 'Indiana Jones' | Get-BricksetSetAdditionalImage
 
     .EXAMPLE
-    Get-BricksetSetAdditionalImage -SetId 6905 | Select-Object -ExpandProperty imageurl | Foreach-Object {Invoke-Expression “cmd.exe /C start $_”}
+    Get-BricksetSetAdditionalImage -SetId 6905 | Select-Object -ExpandProperty imageurl | Foreach-Object {Invoke-Expression 'cmd.exe /C start $_'}
 #>
-[CmdletBinding()][OutputType('Brickset.additionalImages')]
+    [CmdletBinding()][OutputType('System.Management.Automation.PSObject')]
 
     Param
     (
 
-    [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
-    [ValidateNotNullOrEmpty()]
-    [String]$SetId
+        [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
+        [ValidateNotNullOrEmpty()]
+        [String]$setId
     )
 
     begin {
 
-        # --- Check for the presence of $Global:BricksetConnection
+        # --- Check for the presence of $Script:BricksetConnection
         xCheckGlobalBricksetConnection
     }
     process {
-        
+
         try {
-        
-            $BricksetConnection.WebService.getAdditionalImages($BricksetConnection.APIKey,$SetId)
+
+            # --- Make the REST Call
+            $body = @{
+                apiKey = $Script:BricksetConnection.apiKey
+                setId  = $setId
+            }
+
+            Write-Verbose "Body is: $($body | ConvertTo-Json -Depth 5)"
+
+            $response = Invoke-BricksetRestMethod -Method POST -URI '/getAdditionalImages' -Body $body
+
+            $response.additionalImages
         }
-        catch [Exception]{
-            
+        catch [Exception] {
+
             throw
         }
     }
