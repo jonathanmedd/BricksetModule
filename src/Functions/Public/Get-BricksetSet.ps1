@@ -29,7 +29,7 @@
     System.Int
 
     .OUTPUTS
-    Brickset.sets
+    System.Management.Automation.PSObject
 
     .EXAMPLE
     Get-BricksetSet -Theme 'Indiana Jones' -Subtheme 'Temple of Doom'

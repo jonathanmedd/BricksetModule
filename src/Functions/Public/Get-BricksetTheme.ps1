@@ -10,7 +10,7 @@
     None
 
     .OUTPUTS
-    Brickset.themes
+    System.Management.Automation.PSObject
 
     .EXAMPLE
     Get-BricksetTheme
