@@ -6,10 +6,10 @@
     .DESCRIPTION
     Get Brickset Sets Owned
 
-    .PARAMETER OrderBy
+    .PARAMETER orderBy
     Specify Sort Order
 
-    .PARAMETER PageSize
+    .PARAMETER pageSize
     Specify how many records to return
 
     .INPUTS
