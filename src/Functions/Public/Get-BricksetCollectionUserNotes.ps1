@@ -2,7 +2,7 @@
 <#
     .SYNOPSIS
     Get all a user's set notes.
-    
+
     .DESCRIPTION
     Get all a user's set notes.
 
@@ -10,31 +10,37 @@
     None
 
     .OUTPUTS
-    Brickset.userNotes
+    System.Management.Automation.PSObject
 
     .EXAMPLE
     Get-BricksetCollectionUserNotes
 #>
-[CmdletBinding()][OutputType('Brickset.userNotes')]
+[CmdletBinding()][OutputType('System.Management.Automation.PSObject')]
 
-    Param
-    (
+    param()
 
-    )
-    
     try {
 
         # --- Check for the presence of $Global:BricksetConnection
         xCheckGlobalBricksetConnection
-    
+
         # --- Check for the UserHash
         xCheckUserHash
 
-        # --- Make the Webservice Call
-        $BricksetConnection.WebService.getUserNotes($BricksetConnection.APIKey,$BricksetConnection.UserHash)
+        # --- Make the REST Call
+        $body = @{
+            apiKey   = $Script:BricksetConnection.apiKey
+            userHash = $Script:BricksetConnection.userHash
+        }
+
+        Write-Verbose "Body is: $($body | ConvertTo-Json -Depth 5)"
+
+        $response = Invoke-BricksetRestMethod -Method POST -URI '/getUserNotes' -Body $body
+
+        $response.userNotes
     }
     catch [Exception]{
-            
+
         throw
     }
 }
