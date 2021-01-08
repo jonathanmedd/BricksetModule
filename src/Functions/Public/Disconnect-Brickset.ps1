@@ -16,19 +16,15 @@ function Disconnect-Brickset {
 
     Param ()
 
-    # --- Test for existing connection to vRA
-    if (-not $Global:BricksetConnection){
+    # --- Check for the presence of $Script:BricksetConnection
+    xCheckGlobalBricksetConnection
 
-        throw "Brickset Connection variable does not exist. Please run Connect-Brickset first to create it"
-    }
-
-    if ($PSCmdlet.ShouldProcess($Global:BricksetConnection.WebService)){
+    if ($PSCmdlet.ShouldProcess($Script:BricksetConnection.url)){
 
         try {
 
-            Write-Verbose -Message "Removing BricksetConnection Global Variable"
-            Remove-Variable -Name BricksetConnection -Scope Global -Force -ErrorAction SilentlyContinue
-
+            Write-Verbose -Message "Removing BricksetConnection Script Variable"
+            Remove-Variable -Name BricksetConnection -Scope Script -Force -ErrorAction SilentlyContinue
         }
         catch [Exception]{
 
