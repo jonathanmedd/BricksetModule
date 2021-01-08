@@ -28,7 +28,6 @@
 
     Param
     (
-
         [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$setId
