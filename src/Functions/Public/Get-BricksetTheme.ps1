@@ -21,7 +21,7 @@
 
     try {
 
-        # --- Check for the presence of $Global:BricksetConnection
+        # --- Check for the presence of $Script:BricksetConnection
         xCheckGlobalBricksetConnection
 
         # --- Make the REST Call
