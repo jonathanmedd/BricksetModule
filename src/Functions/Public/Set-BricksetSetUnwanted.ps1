@@ -1,8 +1,8 @@
 ﻿function Set-BricksetSetUnwanted {
-<#
+    <#
     .SYNOPSIS
     Set a Brickset Set to Unwanted status
-    
+
     .DESCRIPTION
     Set a Brickset Set to Unwanted status
 
@@ -18,16 +18,15 @@
     .EXAMPLE
     Set-BricksetSetUnwanted -SetId 26049
 #>
-[CmdletBinding(SupportsShouldProcess,ConfirmImpact="High")]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = "High")]
 
-    Param
+    param
     (
-    [parameter(Mandatory=$true,ValueFromPipeline=$true,ValueFromPipelineByPropertyName=$true)]
-    [ValidateNotNullOrEmpty()]
-    [String]$SetId
-
+        [parameter(Mandatory = $true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [ValidateNotNullOrEmpty()]
+        [String]$setId
     )
-    
+
     try {
 
         # --- Check for the presence of $Global:BricksetConnection
@@ -37,13 +36,33 @@
         xCheckUserHash
 
         # --- Make the Webservice Call
-        if ($PSCmdlet.ShouldProcess($SetId)){
+        if ($PSCmdlet.ShouldProcess($SetId)) {
 
-            $BricksetConnection.WebService.setCollection_wants($BricksetConnection.APIKey, $BricksetConnection.UserHash, $SetId, 0)
+            # - Prepare the JSON params
+            $jsonParams = [PSCustomObject] @{
+
+                want = '0'
+            }
+
+            $stringParam = $jsonParams | ConvertTo-Json -Compress
+
+            Write-Verbose "jsonParams are: $stringParam"
+
+            # --- Make the REST Call
+            $body = @{
+                apiKey   = $Script:BricksetConnection.apiKey
+                userHash = $Script:BricksetConnection.userHash
+                params   = $stringParam
+                setID    = $setId
+            }
+
+            Write-Verbose "Body is: $($body | ConvertTo-Json -Depth 5)"
+
+            Invoke-BricksetRestMethod -Method POST -URI '/setCollection' -Body $body
         }
     }
-    catch [Exception]{
-            
+    catch [Exception] {
+
         throw
     }
 }
