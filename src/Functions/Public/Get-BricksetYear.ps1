@@ -1,11 +1,11 @@
 ﻿function Get-BricksetYear {
-<#
+    <#
     .SYNOPSIS
     Get Brickset Years for a given Theme
-    
+
     .DESCRIPTION
     Get Brickset Years for a given Theme
-    
+
     .PARAMETER Theme
     Brickset Theme
 
@@ -13,41 +13,50 @@
     System.String.
 
     .OUTPUTS
-    Brickset.years
+    System.Management.Automation.PSObject
+
+    .EXAMPLE
+    Get-BricksetYear
 
     .EXAMPLE
     Get-BricksetYear -Theme 'Indiana Jones'
 
     .EXAMPLE
-    Get-BricksetThemes | Where-Object {$_.Theme -eq 'Indiana Jones'} | Get-BricksetYear
+    Get-BricksetTheme | Where-Object {$_.Theme -eq 'Indiana Jones'} | Get-BricksetYear
 #>
-[CmdletBinding()][OutputType('Brickset.years')]
+    [CmdletBinding()][OutputType('System.Management.Automation.PSObject')]
 
-    Param
+    param
     (
-
-    [parameter(Mandatory=$true,ValueFromPipeline=$true,ValueFromPipelineByPropertyName=$true)]
-    [ValidateNotNullOrEmpty()]
-    [String]$Theme
+        [parameter(Mandatory = $false, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+        [ValidateNotNullOrEmpty()]
+        [String]$theme
     )
-    
+
     begin {
 
-        # --- Check for the presence of $Global:BricksetConnection
+        # --- Check for the presence of $Script:BricksetConnection
         xCheckGlobalBricksetConnection
-    }  
+    }
 
     process {
 
         try {
-            
-            foreach ($ThemeObject in $Theme){
 
-                $BricksetConnection.WebService.getYears($BricksetConnection.APIKey,$ThemeObject)
+            # --- Make the REST Call
+            $body = @{
+                apiKey = $Script:BricksetConnection.apiKey
+                Theme  = $theme
             }
+
+            Write-Verbose "Body is: $($body | ConvertTo-Json -Depth 5)"
+
+            $response = Invoke-BricksetRestMethod -Method POST -URI '/getYears' -Body $body
+
+            $response.years
         }
-        catch [Exception]{
-            
+        catch [Exception] {
+
             throw
         }
     }
