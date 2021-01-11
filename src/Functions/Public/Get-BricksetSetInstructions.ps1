@@ -38,7 +38,7 @@
 
     begin {
 
-        # --- Check for the presence of $Global:BricksetConnection
+        # --- Check for the presence of $Script:BricksetConnection
         xCheckGlobalBricksetConnection
     }
     process {
