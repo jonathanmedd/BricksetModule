@@ -1,8 +1,8 @@
 ﻿function Set-BricksetMinifgCollectionWanted {
-<#
+    <#
     .SYNOPSIS
     Set a Brickset Minifg to Wanted status
-    
+
     .DESCRIPTION
     Set a Brickset Minfig to Wanted status.
 
@@ -16,33 +16,53 @@
     None
 
     .EXAMPLE
-    Set-BricksetMinifgCollectionWanted -MinifgNumber sw705
+    Set-BricksetMinifgCollectionWanted -MinifigNumber sw705
 #>
-[CmdletBinding(SupportsShouldProcess,ConfirmImpact="High")]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = "High")]
 
     Param
     (
-    [parameter(Mandatory=$true)]
-    [ValidateNotNullOrEmpty()]
-    [String]$MinifgNumber
+        [parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [String]$minifigNumber
     )
-    
+
     try {
 
-        # --- Check for the presence of $Global:BricksetConnection
+        # --- Check for the presence of $Script:BricksetConnection
         xCheckGlobalBricksetConnection
 
         # --- Check for the UserHash
         xCheckUserHash
 
         # --- Make the Webservice Call
-        if ($PSCmdlet.ShouldProcess($MinifgNumber)){
+        if ($PSCmdlet.ShouldProcess($MinifigNumber)) {
 
-            $BricksetConnection.WebService.setMinifigCollection($BricksetConnection.APIKey, $BricksetConnection.UserHash, $MinifgNumber, $null, 1)
+            # - Prepare the JSON params
+            $jsonParams = [PSCustomObject] @{
+
+                want = '1'
+            }
+
+            $stringParam = $jsonParams | ConvertTo-Json -Compress
+
+            Write-Verbose "jsonParams are: $stringParam"
+
+            # --- Make the REST Call
+            $body = @{
+                apiKey   = $Script:BricksetConnection.apiKey
+                userHash = $Script:BricksetConnection.userHash
+                params   = $stringParam
+                minifigNumber = $minifigNumber
+            }
+
+            Write-Verbose "Body is: $($body | ConvertTo-Json -Depth 5)"
+
+            Invoke-BricksetRestMethod -Method POST -URI '/setMinifigCollection' -Body $body
         }
     }
-    catch [Exception]{
-            
+    catch [Exception] {
+
         throw
     }
 }
