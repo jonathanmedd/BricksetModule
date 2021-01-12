@@ -12,6 +12,12 @@
     .PARAMETER QtyOwned
     Quantity Owned
 
+    .PARAMETER Rating
+    Supply a rating from 1 - 5
+
+    .PARAMETER UserNotes
+    Supply User Notes
+
     .INPUTS
     System.String
     System.Number
@@ -20,7 +26,7 @@
     None
 
     .EXAMPLE
-    Set-BricksetSetOwned -SetId 26049 -QtyOwned 1
+    Set-BricksetSetOwned -SetId 26049 -QtyOwned 1 -Rating 5 -UserNotes 'One of my favourite sets'
 
     .EXAMPLE
     Get-BricksetSet -SetNumber '7199-1' | Set-BricksetSetOwned -QtyOwned 1 -Confirm:$false
@@ -39,7 +45,11 @@
 
         [parameter(Mandatory = $false)]
         [ValidateSet(1, 2, 3, 4, 5)]
-        [Int]$rating
+        [Int]$rating,
+
+        [parameter(Mandatory = $false)]
+        [ValidateNotNullOrEmpty()]
+        [String]$userNotes
     )
 
     try {
@@ -62,6 +72,10 @@
             if ($PSBoundParameters.ContainsKey('rating')) {
 
                 $jsonParams | Add-Member -MemberType NoteProperty -Name 'rating' -Value $rating
+            }
+            if ($PSBoundParameters.ContainsKey('userNotes')) {
+
+                $jsonParams | Add-Member -MemberType NoteProperty -Name 'notes' -Value $userNotes
             }
 
             $stringParam = $jsonParams | ConvertTo-Json -Compress
