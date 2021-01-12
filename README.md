@@ -1,36 +1,57 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/q72a9vcced6m8fd1?svg=true)](https://ci.appveyor.com/project/jonathanmedd/bricksetmodule)
 # PowerShell Brickset Module
 
-The [www.brickset.com](http://www.brickset.com) website provides an [API](http://brickset.com/tools/webservices/v2) for working with their data. This PowerShell module works with that [API](http://brickset.com/tools/webservices/v2).
+The [www.brickset.com](http://www.brickset.com) website provides an [API](https://brickset.com/api/v3.asmx) for working with their data. This PowerShell module works with that [API](https://brickset.com/api/v3.asmx).
 
 **Pre-Requisites**
 
-PowerShell version 4 or later.
+PowerShell version 7.1 or later.
 
-An API key from Brickset is required. Currently they are free and you can get one [here](http://brickset.com/tools/webservices/requestkey).
-
+An API key from Brickset is required. Currently they are free and you can get one [here](https://brickset.com/tools/webservices/requestkey).
+In order to use the inventory features of Brickset to track your own Lego collection a Brickset account is also required.
 
 **Installation**
 
-
-PowerShell v5 users: You grab the latest version of the module from the PowerShell Gallery by running the following command:
+You can grab the latest version of the module from the PowerShell Gallery by running the following command:
 
 ```
 Install-Module -Name Brickset
-```
-
-PowerShell v4 users: Try this handy one liner to download and install the module:
-
-```
-(new-object Net.WebClient).DownloadString("https://github.com/jonathanmedd/BricksetModule/blob/master/Get-Brickset.ps1") | iex
 ```
 
 **Usage**
 
 The below command will make all of the functions in the module available
 
+```
 Import-Module Brickset
+```
 
 To see a list of available functions:
 
+```
 Get-Command -Module Brickset
+```
+
+**Quick Start**
+
+Use of non-inventory functions:
+
+Supply your API key to create a connection variable
+
+```
+Connect-Brickset -APIKey 'Tk5C-KTA2-Gw2Q'
+```
+
+Use of all functions including inventory:
+
+Supply your API key and also Brickset Website credentials to create a connection variable
+
+```
+$cred = Get-Credential
+Connect-Brickset -APIKey 'Tk5C-KTA2-Gw2Q' -Credential $cred
+```
+
+Return all Indiana Jones themed Lego sets
+
+```
+Get-BricksetSet -Theme 'Indiana Jones'
+```
