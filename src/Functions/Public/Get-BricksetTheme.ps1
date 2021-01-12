@@ -22,7 +22,7 @@
     try {
 
         # --- Check for the presence of $Script:BricksetConnection
-        xCheckGlobalBricksetConnection
+        xCheckScriptBricksetConnection
 
         # --- Make the REST Call
         $body = @{

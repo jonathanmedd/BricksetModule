@@ -4,7 +4,7 @@ function Disconnect-Brickset {
     Disconnect from the Brickset API
 
     .DESCRIPTION
-    Disconnect from the Brickset API by removing the global BricksetConnection variable from PowerShell
+    Disconnect from the Brickset API by removing the script BricksetConnection variable from PowerShell
 
     .EXAMPLE
     Disconnect-Brickset
@@ -17,7 +17,7 @@ function Disconnect-Brickset {
     Param ()
 
     # --- Check for the presence of $Script:BricksetConnection
-    xCheckGlobalBricksetConnection
+    xCheckScriptBricksetConnection
 
     if ($PSCmdlet.ShouldProcess($Script:BricksetConnection.url)){
 

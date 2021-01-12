@@ -1,4 +1,4 @@
-function xCheckGlobalBricksetConnection {
+function xCheckScriptBricksetConnection {
 <#
     .SYNOPSIS
     Checks for the presence of $Script:BricksetConnection
@@ -13,7 +13,7 @@ function xCheckGlobalBricksetConnection {
     None
 
     .EXAMPLE
-    xCheckGlobalBricksetConnection
+    xCheckScriptBricksetConnection
 #>
 
 [CmdletBinding()]

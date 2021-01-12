@@ -30,12 +30,11 @@
     try {
 
         # --- Check for the presence of $Script:BricksetConnection
-        xCheckGlobalBricksetConnection
+        xCheckScriptBricksetConnection
 
         # --- Check for the UserHash
         xCheckUserHash
 
-        # --- Make the Webservice Call
         if ($PSCmdlet.ShouldProcess($SetId)) {
 
             # - Prepare the JSON params

@@ -76,7 +76,7 @@
     try {
 
         # --- Check for the presence of $Script:BricksetConnection
-        xCheckGlobalBricksetConnection
+        xCheckScriptBricksetConnection
 
         # - Prepare the JSON params
         $jsonParams = [PSCustomObject] @{

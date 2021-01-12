@@ -22,7 +22,7 @@
     try {
 
         # --- Check for the presence of $Script:BricksetConnection
-        xCheckGlobalBricksetConnection
+        xCheckScriptBricksetConnection
 
         # --- Check for the UserHash
         xCheckUserHash

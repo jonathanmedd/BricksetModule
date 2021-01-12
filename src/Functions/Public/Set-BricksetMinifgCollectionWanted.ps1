@@ -30,12 +30,11 @@
     try {
 
         # --- Check for the presence of $Script:BricksetConnection
-        xCheckGlobalBricksetConnection
+        xCheckScriptBricksetConnection
 
         # --- Check for the UserHash
         xCheckUserHash
 
-        # --- Make the Webservice Call
         if ($PSCmdlet.ShouldProcess($MinifigNumber)) {
 
             # - Prepare the JSON params
@@ -50,9 +49,9 @@
 
             # --- Make the REST Call
             $body = @{
-                apiKey   = $Script:BricksetConnection.apiKey
-                userHash = $Script:BricksetConnection.userHash
-                params   = $stringParam
+                apiKey        = $Script:BricksetConnection.apiKey
+                userHash      = $Script:BricksetConnection.userHash
+                params        = $stringParam
                 minifigNumber = $minifigNumber
             }
 
