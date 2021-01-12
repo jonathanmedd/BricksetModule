@@ -1,11 +1,11 @@
 ﻿function Test-BricksetAPIKey {
-<#
+    <#
     .SYNOPSIS
     Test the Brickset API Key
-    
+
     .DESCRIPTION
     Test the Brickset API Key
-    
+
     .PARAMETER APIKey
     API Key
 
@@ -18,23 +18,27 @@
     .EXAMPLE
     Test-BricksetAPIKey -APIKey 'Tk5C-KTA2-Gw2Q'
 #>
-[CmdletBinding()][OutputType('System.Boolean')]
+    [CmdletBinding()][OutputType('System.Boolean')]
 
-    Param
+    param
     (
-
-    [parameter(Mandatory=$true)]
-    [ValidateNotNullOrEmpty()]
-    [String]$APIKey
-    )    
+        [parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [String]$apiKey
+    )
 
     try {
 
-        # --- Make the Webservice Call
-        $TestWebservice = New-WebServiceProxy -Uri 'http://brickset.com/api/v2.asmx?WSDL' -Namespace 'Brickset' -Class 'Sets'
-        $CheckKey = $TestWebservice.checkKey($APIKey)
+        # --- Make the REST Call
+        $body = @{
+            apiKey = $apiKey
+        }
 
-        if ($CheckKey -eq 'OK'){
+        $contentType = 'application/x-www-form-urlencoded'
+
+        $checkKey = Invoke-RestMethod -Method POST -Uri 'https://brickset.com/api/v3.asmx/checkKey' -ContentType $contentType -body $body
+
+        if ($checkKey.status -eq 'success') {
 
             Write-Output $true
         }
@@ -43,8 +47,8 @@
             Write-Output $false
         }
     }
-    catch [Exception]{
-            
+    catch [Exception] {
+
         throw
     }
 }
