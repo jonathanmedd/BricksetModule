@@ -72,6 +72,8 @@ Task UpdateModuleManifest {
 
     $PublicFunctions = Get-ChildItem -Path "$($ENV:BHModulePath)\Functions\Public" -Filter "*.ps1" -Recurse | Sort-Object
 
+    Write-Host "PublicFunctions are: $PublicFunctions"
+
     $ExportFunctions = @()
 
     foreach ($FunctionFile in $PublicFunctions) {
@@ -87,7 +89,13 @@ Task UpdateModuleManifest {
         }
     }
 
-    Set-ModuleFunctions -Name $ENV:BHPSModuleManifest -FunctionsToExport $ExportFunctions -Verbose:$VerbosePreference
+    Write-Host "ExportFunctions are: $ExportFunctions"
+
+    $result = Test-Path $ENV:BHPSModuleManifest
+
+    "Test path result is: $result"
+
+    Set-ModuleFunction -Name $ENV:BHPSModuleManifest -FunctionsToExport $ExportFunctions -Verbose:$VerbosePreference
 
 }
 
