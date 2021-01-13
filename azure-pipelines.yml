@@ -1,3 +1,6 @@
+variables:
+  'VSTS.DisableFetchByCommit': 'true'
+
 trigger:
   batch: true
   branches:
