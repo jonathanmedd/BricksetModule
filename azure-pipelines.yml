@@ -33,11 +33,12 @@ stages:
             useConfigFile: true
             configFilePath: GitVersion.yml
 
-        - task: PowerShell@1
+        - task: PowerShell@2
           displayName: 'Execute Build'
           inputs:
-            scriptName: tools/build.ps1
+            filePath: tools/build.ps1
             arguments: -Task BuildWithTests
+            pwsh: true
 
         - task: PublishTestResults@2
           displayName: 'Publish Test Results'

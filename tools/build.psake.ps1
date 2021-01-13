@@ -102,7 +102,7 @@ Task UpdateModuleManifest {
         Name = (Resolve-Path $Name).Path
     }
 
-    Write-Host "params are: $params"
+    Write-Host "params are: $($params.Name)"
 
     # Create a runspace, add script to run
     $PowerShell = [Powershell]::Create()
