@@ -60,9 +60,10 @@ Task Lint {
 
 }
 
-# Task ExecuteTest {
-#     Invoke-Pester $ENV:BHProjectPath\tests\Test000-Module.Tests.ps1 -CI -Output Detailed
-# }
+Task ExecuteTest {
+    Write-Host "No tests available yet"
+    # Invoke-Pester $ENV:BHProjectPath\tests\Test000-Module.Tests.ps1 -CI -Output Detailed
+}
 
 ###############
 # Task: Build #
@@ -87,36 +88,6 @@ Task UpdateModuleManifest {
         if ($Functions.Name) {
             $ExportFunctions += $Functions.Name
         }
-    }
-
-    Write-Host "ExportFunctions are: $ExportFunctions"
-
-    $result = Test-Path $ENV:BHPSModuleManifest
-
-    Write-Host "Test path result is: $result"
-
-    $Name = $ENV:BHPSModuleManifest
-    $params = @{
-        Force = $True
-        Passthru = $True
-        Name = (Resolve-Path $Name).Path
-    }
-
-    Write-Host "params are: $($params.Name)"
-
-    # Create a runspace, add script to run
-    $PowerShell = [Powershell]::Create()
-    [void]$PowerShell.AddScript({
-        Param ($Force, $Passthru, $Name)
-        $module = Import-Module -Name $Name -PassThru:$Passthru -Force:$Force
-        $module | Where-Object {$_.Path -notin $module.Scripts}
-    }).AddParameters($Params)
-
-    $Module = $PowerShell.Invoke()
-
-    if ($PowerShell.HadErrors){
-
-        $PowerShell.Streams.Error | Write-Error -ErrorAction Stop
     }
 
     Set-ModuleFunction -Name $ENV:BHPSModuleManifest -FunctionsToExport $ExportFunctions -Verbose
