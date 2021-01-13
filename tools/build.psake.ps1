@@ -93,9 +93,33 @@ Task UpdateModuleManifest {
 
     $result = Test-Path $ENV:BHPSModuleManifest
 
-    "Test path result is: $result"
+    Write-Host "Test path result is: $result"
 
-    Set-ModuleFunction -Name $ENV:BHPSModuleManifest -FunctionsToExport $ExportFunctions -Verbose:$VerbosePreference
+    $Name = $ENV:BHPSModuleManifest
+    $params = @{
+        Force = $True
+        Passthru = $True
+        Name = (Resolve-Path $Name).Path
+    }
+
+    Write-Host "params are: $params"
+
+    # Create a runspace, add script to run
+    $PowerShell = [Powershell]::Create()
+    [void]$PowerShell.AddScript({
+        Param ($Force, $Passthru, $Name)
+        $module = Import-Module -Name $Name -PassThru:$Passthru -Force:$Force
+        $module | Where-Object {$_.Path -notin $module.Scripts}
+    }).AddParameters($Params)
+
+    $Module = $PowerShell.Invoke()
+
+    if ($PowerShell.HadErrors){
+
+        $PowerShell.Streams.Error | Write-Error -ErrorAction Stop
+    }
+
+    Set-ModuleFunction -Name $ENV:BHPSModuleManifest -FunctionsToExport $ExportFunctions -Verbose
 
 }
 
