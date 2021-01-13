@@ -1,8 +1,7 @@
 @{
-    # ExcludeRules=@(
-    #     "PSAvoidUsingUserNameAndPassWordParams",
-    #     "PSAvoidGlobalVars"
-    # )
+    ExcludeRules=@(
+        "PSUseSingularNouns"
+    )
 
     Severity=@(
         "Warning",
