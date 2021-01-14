@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/jonmedd/BricksetModule/_apis/build/status/jonathanmedd.Bricksetmodule?branchName=master)](https://dev.azure.com/jonmedd/BricksetModule/_apis/build/status/jonathanmedd.Bricksetmodule?branchName=master) ![](https://img.shields.io/powershellgallery/v/Brickset) ![](https://img.shields.io/powershellgallery/dt/Brickset)
+
 # PowerShell Brickset Module
 
 The [www.brickset.com](http://www.brickset.com) website provides an [API](https://brickset.com/api/v3.asmx) for working with their data. This PowerShell module works with that [API](https://brickset.com/api/v3.asmx).
