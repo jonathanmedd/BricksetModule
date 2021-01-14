@@ -60,21 +60,21 @@ stages:
             artifactName: Tools
 
 
-  # - stage: Release
-  #   dependsOn: CI
-  #   condition: succeeded('CI')
-  #   jobs:
-  #   - job: Test
-  #     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-  #     steps:
-  #       - task: DownloadPipelineArtifact@2
-  #         displayName: Restore Pipeline Artifacts
+  - stage: Release
+    dependsOn: CI
+    condition: succeeded('CI')
+    jobs:
+    - job: Test
+      condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+      steps:
+        - task: DownloadPipelineArtifact@2
+          displayName: Restore Pipeline Artifacts
 
-  #       - task: PowerShell@1
-  #         displayName: 'Publish Module'
-  #         inputs:
-  #           scriptName: $(Pipeline.Workspace)/Tools/Publish-PSModule.ps1
-  #           arguments: -ApiKey $(PSTestGalleryApiKey) -Path "$(Pipeline.Workspace)/Release/PowervRA" -CheckForExistingVersion -PreRelease
+        - task: PowerShell@1
+          displayName: 'Publish Module'
+          inputs:
+            scriptName: $(Pipeline.Workspace)/Tools/Publish-PSModule.ps1
+            arguments: -ApiKey $(PSTestGalleryApiKey) -Path "$(Pipeline.Workspace)/Release/Brickset" -CheckForExistingVersion -PreRelease
 
   #   - job: Production
   #     condition: startswith(variables['Build.SourceBranch'], 'refs/tags/v')
