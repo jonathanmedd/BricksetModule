@@ -1,2 +1,10 @@
 README.md export-ignore
 .gitattributes export-ignore
+.gitignore export-ignore
+# docs/ export-ignore
+tests/ export-ignore
+tools/ export-ignore
+
+# media/ export-ignore
+LICENCE export-ignore
+README.md export-ignore
