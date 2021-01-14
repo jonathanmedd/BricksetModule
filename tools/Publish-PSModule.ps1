@@ -42,6 +42,8 @@ try {
     $PathEnv = $PathEnv + ";" + $NugetPath
     [System.Environment]::SetEnvironmentVariable("path", $PathEnv)
 
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
     Write-Verbose "Create NuGet package provider"
     Install-PackageProvider -Name NuGet -Scope CurrentUser -Force
 
