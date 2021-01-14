@@ -93,6 +93,6 @@ stages:
         - task: GitHubRelease@1
           displayName: 'GitHub Release'
           inputs:
-            gitHubConnection: 'jonathanmedd'
+            gitHubConnection: 'Brickset'
             title: Brickset
             assets: "$(Pipeline.Workspace)/Release/Brickset.$(Build.BuildNumber).zip"
