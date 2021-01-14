@@ -70,11 +70,18 @@ stages:
         - task: DownloadPipelineArtifact@2
           displayName: Restore Pipeline Artifacts
 
+        # - task: PowerShell@2
+        #   displayName: 'Publish Module'
+        #   inputs:
+        #     filePath: $(Pipeline.Workspace)/Tools/Publish-PSModule.ps1
+        #     arguments: -ApiKey $(PSTestGalleryApiKey) -Path "$(Pipeline.Workspace)/Release/Brickset" -CheckForExistingVersion -PreRelease
+        #     pwsh: true
+
         - task: PowerShell@2
           displayName: 'Publish Module'
           inputs:
-            filePath: $(Pipeline.Workspace)/Tools/Publish-PSModule.ps1
-            arguments: -ApiKey $(PSTestGalleryApiKey) -Path "$(Pipeline.Workspace)/Release/Brickset" -CheckForExistingVersion -PreRelease
+            filePath: $(Pipeline.Workspace)/Tools/Publish-PSModuleTest.ps1
+            arguments: -ApiKey $(PSTestGalleryApiKey) -Path "$(Pipeline.Workspace)/Release/Brickset" -CheckForExistingVersion -PreRelease -Verbose
             pwsh: true
 
   #   - job: Production
