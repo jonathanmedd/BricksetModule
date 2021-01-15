@@ -25,6 +25,7 @@ param(
 )
 
 try {
+    $Repository = "PSGallery"
 
     if ($PreRelease.IsPresent){
         Register-PackageSource -Name PoshTestGallery -Location https://www.poshtestgallery.com/api/v2/ -ProviderName PowerShellGet
