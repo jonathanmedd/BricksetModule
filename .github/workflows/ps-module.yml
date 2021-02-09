@@ -81,7 +81,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          files: "tools/testResults.xml"
+          files: "./Tools/testResults.xml"
 
   test_release:
 
