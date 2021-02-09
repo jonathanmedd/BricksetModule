@@ -1,5 +1,5 @@
 ﻿function Get-BricksetCollectionUserNotes {
-<#
+    <#
     .SYNOPSIS
     Get all a user's set notes.
 
@@ -15,7 +15,7 @@
     .EXAMPLE
     Get-BricksetCollectionUserNotes
 #>
-[CmdletBinding()][OutputType('System.Management.Automation.PSObject')]
+    [CmdletBinding()][OutputType('System.Management.Automation.PSObject')]
 
     param()
 
@@ -39,7 +39,7 @@
 
         $response.userNotes
     }
-    catch [Exception]{
+    catch [Exception] {
 
         throw
     }
