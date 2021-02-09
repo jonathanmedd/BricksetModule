@@ -151,7 +151,16 @@ Task CreateArchive {
 
 Task ExecuteTest {
 
-    Invoke-Pester $ENV:BHProjectPath\tests\Test000-Module.Tests.ps1 -CI -Output Detailed
+    # Invoke-Pester $ENV:BHProjectPath\tests\Test000-Module.Tests.ps1 -CI -Output Detailed
+
+    $config = [PesterConfiguration]::Default
+    $config.CodeCoverage.Enabled = $true
+    $config.TestResult.Enabled = $true
+    $config.TestResult.OutputFormat = 'JUnitXml'
+    $config.Output.Verbosity = 'Detailed'
+    $config.Run.Path = "$ENV:BHProjectPath\tests\Test000-Module.Tests.ps1"
+    $config.Run.Exit = $true
+    Invoke-Pester -Configuration $config
 }
 
 # Task UpdateDocumentation {

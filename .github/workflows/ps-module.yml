@@ -38,13 +38,6 @@ jobs:
           useConfigFile: true
           configFilePath: GitVersion.yml
 
-      - name: Display SemVer
-        run: |
-          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
-      - name: Display MajorMinorPatch
-        run: |
-          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
-
       - name: Execute Build
         run: tools/build.ps1 -Task BuildWithTests
         shell: pwsh
