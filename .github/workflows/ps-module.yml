@@ -4,11 +4,10 @@ on:
     branches:
       - '**'
     paths:
-      - '**.js'
-      - src/*
-      - tools/*
-      - tests/*
-      - .github/workflows
+      - src/**
+      - tools/**
+      - tests/**
+      - .github/workflows/**
     tags:
       - v*
   pull_request:
