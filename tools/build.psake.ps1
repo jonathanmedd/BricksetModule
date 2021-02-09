@@ -19,10 +19,6 @@ Task Init {
     Write-Output "ScriptAnalyzerSeverityLevel: $($ScriptAnalysisFailBuildOnSeverityLevel)"
 }
 
-##############
-# Task: Test #
-##############
-
 Task Lint {
 
     $Results = Invoke-ScriptAnalyzer -Path $ENV:BHModulePath -Recurse -Settings $ScriptAnalyzerSettingsPath -Verbose:$VerbosePreference
@@ -60,15 +56,6 @@ Task Lint {
 
 }
 
-Task ExecuteTest {
-    Write-Host "No tests available yet"
-    # Invoke-Pester $ENV:BHProjectPath\tests\Test000-Module.Tests.ps1 -CI -Output Detailed
-}
-
-###############
-# Task: Build #
-###############
-
 Task UpdateModuleManifest {
 
     $PublicFunctions = Get-ChildItem -Path "$($ENV:BHModulePath)\Functions\Public" -Filter "*.ps1" -Recurse | Sort-Object
@@ -93,10 +80,6 @@ Task UpdateModuleManifest {
     Set-ModuleFunction -Name $ENV:BHPSModuleManifest -FunctionsToExport $ExportFunctions -Verbose
 
 }
-
-#################
-# Task: Release #
-#################
 
 Task CreateArtifact {
 
@@ -164,6 +147,11 @@ Task CreateArchive {
 
     Add-Type -assembly "System.IO.Compression.Filesystem"
     [IO.Compression.ZipFile]::CreateFromDirectory($ReleaseDirectoryPath, $Destination)
+}
+
+Task ExecuteTest {
+
+    Invoke-Pester $ENV:BHProjectPath\tests\Test000-Module.Tests.ps1 -CI -Output Detailed
 }
 
 # Task UpdateDocumentation {

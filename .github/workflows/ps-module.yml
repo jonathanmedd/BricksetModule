@@ -1,0 +1,102 @@
+name: Process PS Module
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - '**.js'
+      - src/*
+      - tools/*
+      - tests/*
+      - .github/workflows
+    tags:
+      - v*
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    name: Build module
+    runs-on: windows-latest
+    steps:
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.8
+        with:
+          versionSpec: '5.x'
+
+      - name: Determine Version
+        id:   gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.8
+        with:
+          useConfigFile: true
+          configFilePath: GitVersion.yml
+
+      - name: Display SemVer
+        run: |
+          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+      - name: Display MajorMinorPatch
+        run: |
+          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
+
+      - name: Execute Build
+        run: tools/build.ps1 -Task BuildWithTests
+        shell: pwsh
+
+      - name: Upload Release artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Release
+          path: ${{ github.workspace }}/Release
+
+      - name: Upload Tools artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Tools
+          path: ${{ github.workspace }}/tools
+
+  test_release:
+
+    name: Test Release module
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: windows-latest
+    needs: build
+    steps:
+
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+
+      - name: Publish Module to Test PowerShell gallery
+        run: .\Tools\Publish-PSModule.ps1 -ApiKey ${{ secrets.PSTestGalleryApiKey }} -Path ".\Release\Brickset" -CheckForExistingVersion -PreRelease -Verbose
+        shell: pwsh
+
+  prod_release:
+
+    name: Prod Release module
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+
+      # - name: Publish Module to Prod PowerShell gallery
+      #   run: .\Tools\Publish-PSModule.ps1 -ApiKey ${{ secrets.PSGalleryApiKey }} -Path ".\Release\Brickset" -CheckForExistingVersion -Verbose
+      #   shell: pwsh
+
+      # - name: Create Release
+      #   id: create_release
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     artifacts: ".\\Release\\*.zip"
+      #     body: "Testing"
+      #     token: ${{ secrets.GITHUB_TOKEN }}
