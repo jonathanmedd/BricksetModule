@@ -42,6 +42,12 @@ jobs:
         run: tools/build.ps1 -Task BuildWithTests
         shell: pwsh
 
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: tools\testResults.xml
+
       - name: Upload Release artifact
         uses: actions/upload-artifact@v2
         with:

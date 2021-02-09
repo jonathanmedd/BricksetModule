@@ -151,8 +151,6 @@ Task CreateArchive {
 
 Task ExecuteTest {
 
-    # Invoke-Pester $ENV:BHProjectPath\tests\Test000-Module.Tests.ps1 -CI -Output Detailed
-
     $config = [PesterConfiguration]::Default
     $config.CodeCoverage.Enabled = $true
     $config.TestResult.Enabled = $true
