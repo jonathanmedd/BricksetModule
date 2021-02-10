@@ -98,9 +98,7 @@ Task CreateArtifact {
     Copy-Item -Path $ModuleManifestSource.FullName -Destination "$($ReleaseDirectoryPath)\$($ModuleName).psd1" -Force
 
     # --- Set the psd1 module version
-    if ($ENV:TF_BUILD){
-        $ModuleManifestVersion = $ENV:GITVERSION_MajorMinorPatch
-    }
+    $ModuleManifestVersion = $ENV:GITVERSION_MajorMinorPatch
     Update-Metadata -Path "$($ReleaseDirectoryPath)\$($ModuleName).psd1" -PropertyName ModuleVersion -Value $ModuleManifestVersion
 
     # --- Create an empty psm1 file
@@ -135,11 +133,7 @@ $($Content)
 
 Task CreateArchive {
 
-    $Destination = "$($ReleaseDirectoryPath).zip"
-
-    if ($ENV:TF_BUILD){
-        $Destination = "$($ReleaseDirectoryPath).$($ENV:GITVERSION_SemVer).zip"
-    }
+    $Destination = "$($ReleaseDirectoryPath).$($ENV:GITVERSION_SemVer).zip"
 
     if (Test-Path -Path $Destination) {
         Remove-Item -Path $Destination -Force
