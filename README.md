@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/jonmedd/BricksetModule/_apis/build/status/jonathanmedd.BricksetModule?branchName=master)](https://dev.azure.com/jonmedd/BricksetModule/_build/latest?definitionId=8&branchName=master) ![](https://img.shields.io/powershellgallery/v/Brickset) ![](https://img.shields.io/powershellgallery/dt/Brickset)
+![Process PS Module](https://github.com/jonathanmedd/BricksetModule/workflows/Process%20PS%20Module/badge.svg) ![](https://img.shields.io/powershellgallery/v/Brickset) ![](https://img.shields.io/powershellgallery/dt/Brickset)
 
 # PowerShell Brickset Module
 
