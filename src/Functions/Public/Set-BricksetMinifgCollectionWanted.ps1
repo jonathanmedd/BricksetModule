@@ -6,8 +6,8 @@
     .DESCRIPTION
     Set a Brickset Minfig to Wanted status.
 
-    .PARAMETER MinifgNumber
-    Brickset MinifgNumber
+    .PARAMETER MinifigNumber
+    Brickset MinifigNumber
 
     .INPUTS
     System.String

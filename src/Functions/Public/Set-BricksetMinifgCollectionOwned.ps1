@@ -6,8 +6,8 @@
     .DESCRIPTION
     Set a Brickset Minfig to Owned status. Include the number of sets owned.
 
-    .PARAMETER MinifgNumber
-    Brickset MinifgNumber
+    .PARAMETER MinifigNumber
+    Brickset MinifigNumber
 
     .PARAMETER QtyOwned
     Quantity Owned

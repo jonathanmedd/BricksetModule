@@ -30,7 +30,7 @@
         # - Prepare the JSON params
         $jsonParams = [PSCustomObject] @{
 
-            owned    = '1'
+            owned = '1'
         }
 
         $stringParam = $jsonParams | ConvertTo-Json -Compress
