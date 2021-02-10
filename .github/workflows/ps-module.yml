@@ -42,18 +42,6 @@ jobs:
         run: tools/build.ps1 -Task BuildWithTests
         shell: pwsh
 
-      # - name: Setup Python
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: 3
-
-      # - name: Publish Unit Test Results
-      #   uses: EnricoMi/publish-unit-test-result-action@branch-composite-action
-      #   if: always()
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     files: tools\testResults.xml
-
       - name: Upload Release artifact
         uses: actions/upload-artifact@v2
         with:
@@ -66,7 +54,8 @@ jobs:
           name: Tools
           path: ${{ github.workspace }}/tools
 
-  publish-test-results:
+  publish_test_results:
+
     name: "Publish Unit Tests Results"
     needs: build
     runs-on: ubuntu-latest
@@ -107,17 +96,29 @@ jobs:
 
     steps:
 
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v1
+        with:
+          configuration: "config/changelogConfig.json"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Download artifact
         uses: actions/download-artifact@v2
 
-      # - name: Publish Module to Prod PowerShell gallery
-      #   run: .\Tools\Publish-PSModule.ps1 -ApiKey ${{ secrets.PSGalleryApiKey }} -Path ".\Release\Brickset" -CheckForExistingVersion -Verbose
-      #   shell: pwsh
+      - name: Publish Module to Prod PowerShell gallery
+        run: .\Tools\Publish-PSModule.ps1 -ApiKey ${{ secrets.PSGalleryApiKey }} -Path ".\Release\Brickset" -CheckForExistingVersion -Verbose
+        shell: pwsh
 
-      # - name: Create Release
-      #   id: create_release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     artifacts: ".\\Release\\*.zip"
-      #     body: "Testing"
-      #     token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          name: "Brickset"
+          artifacts: ".\\Release\\*.zip"
+          body: ${{steps.github_release.outputs.changelog}}
+          token: ${{ secrets.GITHUB_TOKEN }}
