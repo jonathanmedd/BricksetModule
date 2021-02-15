@@ -47,7 +47,7 @@
 
     Param (
 
-        [parameter(Mandatory = $false)]
+        [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$theme,
 
@@ -55,7 +55,7 @@
         [ValidateNotNullOrEmpty()]
         [String]$subTheme,
 
-        [parameter(Mandatory = $false)]
+        [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         $year,
 
