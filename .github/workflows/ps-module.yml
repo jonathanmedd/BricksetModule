@@ -8,6 +8,7 @@ on:
       - tools/**
       - tests/**
       - .github/workflows/**
+      - mkdocs.yml
     tags:
       - v*
   pull_request:
@@ -74,12 +75,6 @@ jobs:
 
       - name: Download Artifacts
         uses: actions/download-artifact@v2
-
-      # - name: Deploy
-      #   uses: JamesIves/github-pages-deploy-action@4.1.0
-      #   with:
-      #     branch: gh-pages
-      #     folder: "Docs"
 
       - name: Setup Python
         uses: actions/setup-python@v2
