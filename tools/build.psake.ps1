@@ -165,6 +165,8 @@ Task UpdateDocumentation {
 
     Import-Module -Name "$($ReleaseDirectoryPath)" -Verbose
 
+    Get-Module
+
     $PlatyPSParameters = @{
         Module = $ModuleName
         OutputFolder = $FunctionsPath
