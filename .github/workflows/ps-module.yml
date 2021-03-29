@@ -61,13 +61,30 @@ jobs:
           name: docs
           path: ${{ github.workspace }}/docs
 
+  publish_test_results:
+
+    name: "Publish Unit Tests Results"
+    if: always()
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          files: "./Tools/testResults.xml"
 
   publish_docs:
 
-    name: "Publish Docs to gh-pages"
+    name: "Publish Docs to GitHub Pages"
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: build
     runs-on: ubuntu-latest
-    if: always()
 
     steps:
       - name: Checkout
@@ -86,24 +103,6 @@ jobs:
 
       - name: Run mkdocs
         run: mkdocs gh-deploy --force
-
-  publish_test_results:
-
-    name: "Publish Unit Tests Results"
-    needs: build
-    runs-on: ubuntu-latest
-    if: always()
-
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v2
-
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          files: "./Tools/testResults.xml"
 
   test_release:
 
