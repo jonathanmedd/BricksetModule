@@ -57,3 +57,7 @@ Return all Indiana Jones themed Lego sets
 ```
 Get-BricksetSet -Theme 'Indiana Jones'
 ```
+
+**Documentation**
+
+Documentation for all functions in the module can be found [here](https://jonathanmedd.github.io/BricksetModule/).
