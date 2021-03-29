@@ -1,2 +1,5 @@
+site_name: Brickset Module documentation
+site_url: https://jonathanmedd.github.io/BricksetModule/
+
 theme:
   name: material
