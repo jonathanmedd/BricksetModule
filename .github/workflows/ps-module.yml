@@ -57,7 +57,7 @@ jobs:
       - name: Upload Docs artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Docs
+          name: docs
           path: ${{ github.workspace }}/docs
 
 
@@ -75,11 +75,22 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+      # - name: Deploy
+      #   uses: JamesIves/github-pages-deploy-action@4.1.0
+      #   with:
+      #     branch: gh-pages
+      #     folder: "Docs"
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
         with:
-          branch: gh-pages
-          folder: "Docs"
+          python-version: 3.x
+
+      - name: Install mkdocs-material
+        run: pip install mkdocs-material
+
+      - name: Run mkdocs
+        run: mkdocs gh-deploy --force
 
   publish_test_results:
 
