@@ -163,9 +163,7 @@ Task UpdateDocumentation {
     Remove-Item -Path $FunctionsPath -Recurse -Force -ErrorAction SilentlyContinue
     New-Item $FunctionsPath -ItemType Directory | Out-Null
 
-    Import-Module -Name "$($ReleaseDirectoryPath)" -Verbose
-
-    Get-Module
+    Import-Module -Name "$($ReleaseDirectoryPath)" -Global
 
     $PlatyPSParameters = @{
         Module = $ModuleName
