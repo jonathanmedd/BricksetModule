@@ -66,7 +66,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          files: "${{ github.workspace }}/tools/testResults.xml"
+          files: "${{ github.workspace }}\\tools\\testResults.xml"
 
   publish_docs:
 
