@@ -2,7 +2,7 @@
 #Requires -Modules @{ModuleName="Pester"; RequiredVersion="5.2.1"},@{ModuleName="platyPS"; RequiredVersion="0.14.1"}
 
 Write-Host "Module versions are:"
-Get-Module -Name Psake,PSScriptAnalyzer,BuildHelpers,Pester,platyPS
+Get-Module -Name Psake,PSScriptAnalyzer,BuildHelpers,Pester,platyPS | Select-Object Name,Version
 
 # --- Dot source build.settings.ps1
 . $PSScriptRoot\build.settings.ps1
