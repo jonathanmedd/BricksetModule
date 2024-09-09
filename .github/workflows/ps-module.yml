@@ -23,18 +23,18 @@ jobs:
     steps:
 
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0.9.10
+        uses: gittools/actions/gitversion/setup@v3.0.0
         with:
           versionSpec: '5.x'
 
       - name: Determine Version
         id:   gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.10
+        uses: gittools/actions/gitversion/execute@v3.0.0
         with:
           useConfigFile: true
           configFilePath: GitVersion.yml
@@ -44,19 +44,19 @@ jobs:
         shell: pwsh
 
       - name: Upload Release artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Release
           path: ${{ github.workspace }}/Release
 
       - name: Upload Tools artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Tools
           path: ${{ github.workspace }}/tools
 
       - name: Upload Docs artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: docs
           path: ${{ github.workspace }}/docs
@@ -77,13 +77,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: 3.x
 
@@ -102,7 +102,7 @@ jobs:
     steps:
 
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
 
       - name: Publish Module to Test PowerShell gallery
         run: .\Tools\Publish-PSModule.ps1 -ApiKey ${{ secrets.PSTestGalleryApiKey }} -Path ".\Release\Brickset" -CheckForExistingVersion -PreRelease -Verbose
@@ -118,7 +118,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Build Changelog
         id: github_release
@@ -129,7 +129,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
 
       - name: Publish Module to Prod PowerShell gallery
         run: .\Tools\Publish-PSModule.ps1 -ApiKey ${{ secrets.PSGalleryApiKey }} -Path ".\Release\Brickset" -CheckForExistingVersion -Verbose
