@@ -50,7 +50,7 @@ $Requirements = @(
     },
     @{
         Name = "Pester"
-        Version = "5.3.1"
+        Version = "5.6.1"
     },
     @{
         Name = "platyPS"
